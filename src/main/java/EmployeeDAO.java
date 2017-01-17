@@ -1,6 +1,7 @@
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import ConnectionUtils.ConnectionUtil;
+import Mapper.EmployeeMapper;
 import Model.Employee;
 
 public class EmployeeDAO {
@@ -24,5 +25,10 @@ public class EmployeeDAO {
 		String query="delete from emp_db.employee where id="+e.getId();
 		myTemplate.update(query);
 	}
-
+	public Employee get(int id)
+	{
+		String query="select *from emp_db.employee where id="+id;
+		return myTemplate.queryForObject(query,new EmployeeMapper());
+	
+	}
 }

@@ -11,6 +11,8 @@ public class EmployeeTest {
 		e1.setName("ArunKumar");
 		new EmployeeDAO().update(e1);
 		new EmployeeDAO().delete(e1);
+		System.out.println(new EmployeeDAO().get(2));
+		
 	}
 	
 }
