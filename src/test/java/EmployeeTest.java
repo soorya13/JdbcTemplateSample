@@ -8,6 +8,9 @@ public class EmployeeTest {
 		e1.setId(1);
 		e1.setName("Arun");
 		new EmployeeDAO().add(e1);
+		e1.setName("ArunKumar");
+		new EmployeeDAO().update(e1);
+		new EmployeeDAO().delete(e1);
 	}
 	
 }
