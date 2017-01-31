@@ -1,4 +1,4 @@
-package ConnectionUtils;
+package connectionutils;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;

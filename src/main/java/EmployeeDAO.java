@@ -1,11 +1,10 @@
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import ConnectionUtils.ConnectionUtil;
-import Mapper.EmployeeMapper;
-import Model.Employee;
+import connectionutils.ConnectionUtil;
+import model.Employee;
 
 public class EmployeeDAO {
-	JdbcTemplate myTemplate=ConnectionUtil.getTemplate();
+	private JdbcTemplate myTemplate=ConnectionUtil.getTemplate();
 	public void add(Employee e)
 	{
 		String query="insert into emp_db.employee values(?,?)";
@@ -22,13 +21,20 @@ public class EmployeeDAO {
 	}
 	public void delete(Employee e)
 	{
-		String query="delete from emp_db.employee where id="+e.getId();
-		myTemplate.update(query);
+		String query="delete from emp_db.employee where id=?";
+		Object[] params={e.getId()};
+		myTemplate.update(query,params);
 	}
 	public Employee get(int id)
 	{
-		String query="select *from emp_db.employee where id="+id;
-		return myTemplate.queryForObject(query,new EmployeeMapper());
+		String query="select *from emp_db.employee where id=?";
+		Object[] params={id};
+		return myTemplate.queryForObject(query,params,(rs,rowNo)->{
+			Employee employee=new Employee();
+			employee.setId(rs.getInt("id"));
+			employee.setName(rs.getString("name"));
+			return employee;
+		});
 	
 	}
 }
