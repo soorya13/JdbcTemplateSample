@@ -27,7 +27,7 @@ public class EmployeeDAO {
 	}
 	public Employee get(int id)
 	{
-		String query="select *from emp_db.employee where id=?";
+		String query="select id,name from emp_db.employee where id=?";
 		Object[] params={id};
 		return myTemplate.queryForObject(query,params,(rs,rowNo)->{
 			Employee employee=new Employee();
